@@ -1,0 +1,231 @@
+# 🔑 Keys in DBMS (Database Management Systems)
+
+A **key** in DBMS is an attribute (or a group of attributes) that helps **uniquely identify records (rows)** in a table and **establish relationships** between tables.
+
+This README explains all important **types of keys** in **very simple language**, with **clear tables, examples, and comparisons**.
+
+---
+
+## 📌 Why Do We Need Keys?
+
+Keys are used to:
+
+* Uniquely identify each record in a table
+* Avoid duplicate data
+* Maintain data integrity
+* Create relationships between tables
+* Speed up data retrieval
+
+---
+
+## 🧱 Sample Tables Used in Examples
+
+### 🎓 STUDENT Table
+
+| Student_ID | Roll_No | Email                         | Name  | Course_ID |
+| ---------: | ------: | ----------------------------- | ----- | --------: |
+|        101 |       1 | [a@abc.com](mailto:a@abc.com) | Rahul |       C01 |
+|        102 |       2 | [b@abc.com](mailto:b@abc.com) | Priya |       C02 |
+|        103 |       3 | [c@abc.com](mailto:c@abc.com) | Aman  |       C01 |
+
+---
+
+### 📘 COURSE Table
+
+| Course_ID | Course_Name  |
+| --------: | ------------ |
+|       C01 | Data Science |
+|       C02 | AI           |
+
+---
+
+## 1️⃣ Primary Key
+
+### ✅ What is a Primary Key?
+
+A **Primary Key** is a column (or combination of columns) that:
+
+* **Uniquely identifies each record**
+* **Cannot be NULL**
+* **Cannot have duplicate values**
+
+### 🧠 Think of it as:
+
+Your **Aadhaar number** — unique and mandatory.
+
+### 📌 Example
+
+In the **STUDENT** table:
+
+* `Student_ID` uniquely identifies each student
+
+```text
+Primary Key → Student_ID
+```
+
+### ✔ Valid Primary Key Column
+
+| Student_ID |
+| ---------: |
+|        101 |
+|        102 |
+|        103 |
+
+---
+
+## 2️⃣ Candidate Key
+
+### ✅ What is a Candidate Key?
+
+A **Candidate Key** is:
+
+* A column (or set of columns) that **can become a Primary Key**
+* It **uniquely identifies records**
+
+👉 A table can have **multiple candidate keys**, but **only one** is chosen as the **primary key**.
+
+### 📌 Example
+
+In the **STUDENT** table:
+
+* `Student_ID`
+* `Roll_No`
+* `Email`
+
+All are **unique**, so all are **candidate keys**.
+
+```text
+Candidate Keys → Student_ID, Roll_No, Email
+```
+
+---
+
+## 3️⃣ Super Key
+
+### ✅ What is a Super Key?
+
+A **Super Key** is:
+
+* **Any combination of columns** that uniquely identifies a record
+
+👉 It may contain **extra (unnecessary) attributes**.
+
+### 📌 Example
+
+In the **STUDENT** table:
+
+| Super Key Examples |
+| ------------------ |
+| Student_ID         |
+| Student_ID + Name  |
+| Email + Name       |
+
+🔹 All candidate keys are **super keys**, but not all super keys are **candidate keys**.
+
+---
+
+## 4️⃣ Foreign Key
+
+### ✅ What is a Foreign Key?
+
+A **Foreign Key**:
+
+* Is a column in one table
+* Refers to the **Primary Key of another table**
+* Used to **create relationships between tables**
+
+### 🧠 Think of it as:
+
+A **reference** or **link** to another table.
+
+### 📌 Example
+
+* `Course_ID` in **COURSE** table → Primary Key
+* `Course_ID` in **STUDENT** table → Foreign Key
+
+```text
+STUDENT.Course_ID → COURSE.Course_ID
+```
+
+### 🔗 Relationship
+
+| STUDENT.Course_ID | COURSE.Course_ID |
+| ----------------- | ---------------- |
+| C01               | C01              |
+| C02               | C02              |
+
+---
+
+## 5️⃣ Composite Key
+
+### ✅ What is a Composite Key?
+
+A **Composite Key**:
+
+* Is a **Primary Key made of two or more columns**
+* Used when **a single column is not enough** to uniquely identify records
+
+---
+
+### 📌 Example: ENROLLMENT Table
+
+| Student_ID | Course_ID | Enroll_Date |
+| ---------: | --------: | ----------- |
+|        101 |       C01 | 2024-01-01  |
+|        101 |       C02 | 2024-01-10  |
+|        102 |       C01 | 2024-01-15  |
+
+👉 Here:
+
+```text
+Composite Primary Key → (Student_ID, Course_ID)
+```
+
+Neither column alone is unique, **together they are**.
+
+---
+
+## 🧮 Summary Table
+
+| Key Type      | Uniqueness | Null Allowed | Purpose                 |
+| ------------- | ---------- | ------------ | ----------------------- |
+| Primary Key   | Yes        | ❌ No         | Main identifier         |
+| Candidate Key | Yes        | ❌ No         | Possible primary keys   |
+| Super Key     | Yes        | Depends      | Any unique identifier   |
+| Foreign Key   | No         | ✅ Yes        | Links tables            |
+| Composite Key | Yes        | ❌ No         | Multi-column identifier |
+
+---
+
+## 🔁 Relationship Between Keys
+
+```text
+Super Keys
+ ├── Candidate Keys
+ │    └── Primary Key
+
+Foreign Key → References Primary Key
+```
+
+---
+
+## 🧠 Quick One-Line Memory Tricks
+
+* **Primary Key** → Main ID
+* **Candidate Key** → Options for primary key
+* **Super Key** → Any unique combination
+* **Foreign Key** → Link between tables
+* **Composite Key** → Multiple columns as one key
+
+---
+
+## ✅ Final Notes
+
+* A table has **only one primary key**
+* A table can have **multiple candidate keys**
+* Foreign keys ensure **referential integrity**
+* Composite keys are common in **many-to-many relationships**
+
+---
+
+📌 *This README is beginner-friendly, interview-ready, and GitHub-ready.*
